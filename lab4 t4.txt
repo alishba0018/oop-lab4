@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class CricketPlayer {
+private:
+    string name;
+    int jerseyNumber;
+    double battingAverage;
+    int matchesPlayed;
+    int totalRuns;
+
+public:
+    CricketPlayer(string name, int jerseyNumber, double battingAverage) {
+        this->name = name;
+        this->jerseyNumber = jerseyNumber;
+        this->battingAverage = battingAverage;
+        this->matchesPlayed = 1;
+        this->totalRuns = battingAverage;
+    }
+    CricketPlayer& improveAverage(double runs) {
+        battingAverage += runs;
+        return *this; 
+    }
+    void playMatch(int runsScored) {
+        totalRuns += runsScored;
+        matchesPlayed++;
+        battingAverage = (double) totalRuns/ matchesPlayed;
+    }
+    void displayPlayerStats() {
+        cout << "\nPlayer: " << name << endl;
+        cout << "Jersey Number: " << jerseyNumber << endl;
+        cout << "Batting Average: " << battingAverage << endl;
+        cout << "Matches Played: " << matchesPlayed << endl;
+        cout << "Total Runs: " << totalRuns << endl;
+        cout << "Commentary: This batting average is more consistent than Karachis weather!" << endl;
+    }
+};
+
+int main() {
+    CricketPlayer babar("Babar Azam", 56, 50.0);
+    CricketPlayer rizwan("Muhammad Rizwan", 16, 45.0);
+    CricketPlayer saim("Saim Ayub", 23, 35.0);
+    babar.playMatch(100);
+    babar.improveAverage(2);
+    babar.displayPlayerStats();
+    rizwan.playMatch(85);
+    rizwan.improveAverage(3);
+    rizwan.displayPlayerStats();
+    saim.playMatch(120);
+    saim.improveAverage(5);
+    saim.displayPlayerStats();
+
+    return 0;
+}

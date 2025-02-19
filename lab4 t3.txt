@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+class SmartDevice {
+private:
+    string deviceName;
+    string deviceType;
+    bool status; 
+
+public:
+    SmartDevice(string name, string type, bool state) {
+        deviceName = name;
+        deviceType = type;
+        status = state;
+        cout << deviceName << "- Activated." << endl;
+    }
+    void turnOn() {
+        if (!status) {
+            status = true;
+            cout << deviceName << " is now ON." << endl;
+        } else {
+            cout << deviceName << " is already ON." << endl;
+        }
+    }
+    void turnOff() {
+        if (status) {
+            status = false;
+            cout << deviceName <<"is now OFF." << endl;
+        } else {
+            cout << deviceName <<" is already OFF." << endl;
+        }
+    }
+    ~SmartDevice() {
+        cout << deviceName <<"- Shutting down."<< endl;
+    }
+};
+
+int main() {
+    cout << "Creating Smart Devices." << endl;
+    SmartDevice *light = new SmartDevice("Living Room Light", "Smart Light", false);
+    SmartDevice *vacuum = new SmartDevice("RoboVac 3000", "Robo-Vacuum", true);
+    light->turnOn();
+    vacuum->turnOff();
+    cout << "Deleting Smart Devices." << endl;
+    delete light;
+    delete vacuum;
+    return 0;
+}

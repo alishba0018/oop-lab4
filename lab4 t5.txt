@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class FootballPlayer {
+private:
+    string playerName;
+    string position;
+    int goalCount;
+
+public:
+    FootballPlayer() {
+        playerName = "Unknown Player";
+        position = "Benchwarmer";
+        goalCount = 0;
+    }
+    FootballPlayer(string name, string pos, int goals) {
+        playerName = name;
+        position = pos;
+        goalCount = goals;
+    }
+    FootballPlayer(FootballPlayer& fp) {
+        playerName = fp.playerName;
+        position = fp.position;
+        goalCount = fp.goalCount;
+    }
+    FootballPlayer(string name) {
+        playerName = name;
+        position = "Midfielder";
+        goalCount = 10;
+    }
+    void scoreGoals(int goals) {
+        goalCount += goals;
+    }
+    void displayPlayerStats() {
+        cout << "Player: " << playerName << endl;
+        cout << "Position: " << position << endl;
+        cout << "Goals Scored: " << goalCount << endl;
+    }
+};
+
+int main() {
+    FootballPlayer messi("Lionel Messi", "Forward", 800);
+    FootballPlayer ronaldo("Cristiano Ronaldo", "Forward", 850);
+    FootballPlayer neymar("Neymar Jr");
+    FootballPlayer cloneMessi(messi);
+    messi.scoreGoals(5);
+    ronaldo.scoreGoals(3);
+    neymar.scoreGoals(2);
+    messi.displayPlayerStats();
+    ronaldo.displayPlayerStats();
+    neymar.displayPlayerStats();
+    cloneMessi.displayPlayerStats();
+    return 0;
+}
